@@ -1,0 +1,88 @@
+# Turn windows feature on/of > hyper-v & WSL2
+# wsl --status 
+# wsl --set-default-version 2
+
+docker version
+docker run hello-world
+docker run hyperledger/fabric-nodeenv
+docker pull ubuntu
+docker run -it ubuntu
+
+apt-get update && apt-get install -y \
+software-properties-common \
+curl \
+wget \
+unzip \
+git \
+apt-utils \
+build-essential \
+gcc \
+g++ \
+make
+
+curl -sL https://deb.nodesource.com/setup_20.x | bash -
+apt-get install -y nodejs
+apt-get install -y openjdk-11-jdk
+add-apt-repository ppa:ethereum/ethereum
+apt-get update -y
+apt-get install -y solc
+
+wget https://go.dev/dl/go1.21.3.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
+rm go1.21.3.linux-amd64.tar.gz
+
+apt-get install -y \
+docker.io \
+libtool \
+libltdl-dev \
+libssl-dev \
+autoconf \
+automake \
+bison \
+libboost-all-dev \
+libgflags-dev \
+libprotobuf-dev \
+libleveldb-dev \
+libsnappy-dev \
+libsodium-dev \
+liblz4-tool
+
+service --status-all
+
+-------------Practical2-----------------------------------------------------
+
+sudo apt install openjdk-17-jdk openjdk-17-jre
+java --version
+sudo apt install maven
+mvn -v
+docker
+docker --version
+docker-compose --version
+
+export FABRIC_HOME=/path/to/fabric-sdk-java
+export JAVA_HOME=/path/to/jdk/17.0.8.1
+git clone https://github.com/hyperledger/fabric-samples.git
+
+cd fabric-samples/test-network
+ls
+
+./network.sh up
+mvn install
+./network.sh up createChannel
+
+cd /fabric-samples/asset-transfer-basic/chaincode-java    
+	OR
+cd ..
+ls
+cd asset-transfer-basic
+ls
+cd chaincode-java
+
+mvn install
+less Dockerfile  -----optional
+docker build .
+
+optional
+./network.sh up createChannel -c mychannel -ca
+./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-java/ -ccl java
+sudo ./network.sh deployCC -ccp ../asset-transfer-events/chaincode-java/ -ccl java
